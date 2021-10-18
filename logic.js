@@ -12,11 +12,22 @@ async function compute ( ) {
 
         const runnerSettings =
             createRunnerSettings( )
-        const result =
+
+        // logs
+        const logs =
             await request( runnerSettings )
 
-        setHTMLToView( result )
+        // output
+        runnerSettings.idf19.serveLog = false
+        const output =
+            await request( runnerSettings )
+        console.log( output )
 
+        // do things in the end
+        setHTMLToView( logs )
+        downloadOutput( output )
+
+        // download output
         setModalVisibilityTo( true )
 
 
@@ -29,8 +40,8 @@ async function compute ( ) {
             alert ( error.message )
         } else {
             alert ( "Unknown Error. Check logs." )
-            console.error( error )
         }
+        console.error( error )
     }
 }
 
@@ -55,6 +66,19 @@ function request ( runnerSettings ) {
     })
 }
 
+
+function downloadOutput ( output ) {
+    var element = document.createElement( 'a' )
+    element.setAttribute( 'href', 'data:text/plain;charset=utf-8,' + encodeURIComponent( output ) )
+    element.setAttribute( 'download', "reference.19.idf" )
+
+    element.style.display = 'none';
+    document.body.appendChild( element )
+
+    element.click( )
+
+    document.body.removeChild( element )
+}
 
 function setHTMLToView ( resultHTML ) {
     document.getElementById( "result-view" ).src =
