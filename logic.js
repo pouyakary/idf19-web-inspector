@@ -68,9 +68,12 @@ function request ( runnerSettings ) {
 
 
 function downloadOutput ( output ) {
+    const dateForName =
+        ( new Date( ) ).toLocaleString( ).replace( /[\/\.:]/g, "-" )
+
     var element = document.createElement( 'a' )
     element.setAttribute( 'href', 'data:text/plain;charset=utf-8,' + encodeURIComponent( output ) )
-    element.setAttribute( 'download', "reference.19.idf" )
+    element.setAttribute( 'download', `Compiled Reference (${ dateForName }).19.idf` )
 
     element.style.display = 'none';
     document.body.appendChild( element )
