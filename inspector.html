@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IDF19 Inspector</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="select-box.js"></script>
+</head>
+<body>
+    <div id="compiling-modal" hidden="true">
+        <div id="modal-container">
+            <div>Compiling. Please wait...</div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="sidebar">
+            <div class="selection-group">
+                <div class="selection-title">IDF File</div>
+                <input type="file" id="idf">
+            </div>
+
+            <div class="selection-group">
+                <div class="selection-title">EC</div>
+                <div class="select-box">
+                    <select id="ec">
+                        <option value="EC">EC</option>
+                        <option value="EC+">EC+</option>
+                        <option value="EC++">EC++</option>
+                    </select>
+                </div>
+
+                <div class="selection-title">Group</div>
+                <div class="select-box">
+                    <select id="group">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
+
+                <div class="selection-title">Energy Need</div>
+                <div class="select-box">
+                    <select id="energy-need">
+                        <option value="Heating">Heating</option>
+                        <option value="Cooling">Cooling</option>
+                    </select>
+                </div>
+
+                <div class="selection-title">Glazing</div>
+                <div class="select-box">
+                    <select id="glazing">
+                        <option value="Remove">Remove</option>
+                        <option value="Keep">Keep</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="selection-group">
+                <div class="selection-title">IDF19 API & Server</div>
+                <select id="api">
+                    <option value="production">kary.us - production</option>
+                    <option value="staging">kary.us - staging</option>
+                </select>
+            </div>
+
+            <div class="selection-group">
+                <button onClick="compute()">Compile Chapter 19<br>Reference IDF</button>
+            </div>
+
+        </div>
+        <iframe id="result-view" src="" frameborder="0"></iframe>
+    </div>
+    <script src="logic.js"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+
+body, html {
+    font-size:              12pt;
+    margin:                 0;
+    padding:                0;
+    width:                  100vw;
+    height:                 100vh;
+    overflow:               hidden;
+    background-color:       rgb(255, 252, 242);
+}
+
+.container {
+    width:      100vw;
+    height:     100vh;
+    display:    flex;
+}
+
+.sidebar {
+    color:                  white;
+    background-color:       black;
+    -moz-max-width:         fit-content;
+    max-width:              fit-content;
+    flex:                   auto;
+}
+
+#result-view {
+    flex:       1;
+}
+
+.selection-group {
+    border-radius:      5pt;
+    padding:            20pt;
+    margin-bottom:      10pt;
+    padding-bottom:     0;
+}
+
+.selection-title {
+    font-size:      10pt;
+    font-family:    "Helvetica Neue", Helvetica, Arial;
+    display:        block;
+    margin-top:     10pt;
+}
+
+#compiling-modal {
+    position:               absolute;
+    top:                    0;
+    left:                   0;
+    width:                  100vw;
+    height:                 100vh;
+    overflow:               hidden;
+    z-index:                1000;
+    background-color:       #ffc67bc4;
+}
+
+#modal-container {
+    font-family:        monospace;
+    font-size:          1rem;
+    width:              100vw;
+    height:             100vh;
+    display:            flex;
+    align-items:        center;
+    justify-content:    space-around;
+}
