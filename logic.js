@@ -13,19 +13,24 @@ async function compute ( ) {
         const runnerSettings =
             createRunnerSettings( )
 
+        const endpoint =
+            ( getValue( "api" )  === "production"
+                ? "https://idf19-server.kary.us"
+                : "https://idf19-server-dev.kary.us"
+                )
+
         // logs
         const logs =
-            await request( runnerSettings )
+            await axios.post( endpoint, runnerSettings )
 
         // output
         runnerSettings.idf19.serveLog = false
         const output =
-            await request( runnerSettings )
-        console.log( output )
+            await axios.post( endpoint, runnerSettings )
 
         // do things in the end
-        setHTMLToView( logs )
-        downloadOutput( output )
+        setHTMLToView( logs.data )
+        downloadOutput( output.data )
 
         // download output
         setModalVisibilityTo( true )
@@ -48,22 +53,6 @@ async function compute ( ) {
 
 window.onload = function ( ) {
     registerFileMonitor( )
-}
-
-
-function request ( runnerSettings ) {
-    const api =
-        ( getValue( "api" )  === "production"
-            ? "https://idf19-server.kary.us"
-            : "https://idf19-server-dev.kary.us"
-            )
-    return new Promise ( ( resolve, reject ) => {
-        axios.post( api, runnerSettings )
-            .then( response => {
-                resolve( response.data )
-            })
-            .catch( reject )
-    })
 }
 
 
